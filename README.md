@@ -61,7 +61,7 @@ sudo systemctl restart apache2
 Then open your browser and navigate to:
 
 ```
-http://localhost/ctf_challenges/
+http://localhost/GDG_Benha_Bootcamp_web_challenge/
 ```
 
 ## 🔗 GitHub Repository
