@@ -19,7 +19,7 @@ sudo apt update && sudo apt install apache2 php mysql-server php-mysql
 ### 2️⃣ Copy files to the local server directory
 
 ```bash
-sudo cp -r * /var/www/html/ctf_challenges/
+sudo cp -r * /var/www/html/GDG_Benha_Bootcamp_web_challenge/
 ```
 
 ### 3️⃣ Database Setup
@@ -49,7 +49,7 @@ EXIT;
 #### ✅ Import database from `ctf_challenge.sql`
 
 ```bash
-mysql -u maro -p ctf_challenge < ctf_challenge.sql
+mysql -u maro -p GDG_Benha_Bootcamp_web_challenge < ctf_challenge.sql
 ```
 
 ### 4️⃣ Start the Server
