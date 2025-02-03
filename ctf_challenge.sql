@@ -60,7 +60,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (1,'user1','password1','Alice','Smith'),(2,'user2','password2','Bob','Johnson'),(3,'0xmaro','canyouhackme','amar','mohamed'),(4,'abdo','password4','Abdelrahman','ahmed'),(5,'admin','bootcamp','First','Globel'),(6,'user6','password6','Fawaz','elsory'),(15,'zizo','password15','ahmed','mohamed'),(50,'kavin','kavin','assem','hacker'),(125,'gdg','bootcamp2025','gdg','benha');
+INSERT INTO `users` VALUES (1,'user1','password1','Alice','Smith'),(2,'user2','password2','Bob','Johnson'),(3,'0xmaro','admin','amar','mohamed'),(4,'abdo','password4','Abdelrahman','ahmed'),(5,'admin','bootcamp','First','Globel'),(6,'user6','password6','Fawaz','elsory'),(15,'zizo','password15','ahmed','mohamed'),(50,'kavin','kavin','assem','hacker'),(125,'gdg','bootcamp2025','gdg','benha');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
