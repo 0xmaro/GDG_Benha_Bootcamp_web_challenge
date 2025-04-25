@@ -1,71 +1,48 @@
-# Web Challenges - GDG Benha Bootcamp 2025
+# Web Challenges - GDG Benha on Campus Bootcamp 2025
 
 This repository contains a collection of Web CTF challenges used in the GDG Benha Bootcamp 2025.
 
-## 📌 Requirements
+## Requirements
 
-- **Apache2** as a local server
-- **PHP** for running PHP files
-- **MySQL** for database setup
+- Apache2 (local web server)
+- PHP
+- MySQL
 
-## ⚡ Installation & Setup
+## Installation & Setup (Automated)
 
-### 1️⃣ Install Apache2, PHP, and MySQL
+You can run the following bash script to install and configure everything automatically.
 
-```bash
-sudo apt update && sudo apt install apache2 php mysql-server php-mysql
-```
-
-### 2️⃣ Copy files to the local server directory
+### Setup Script
 
 ```bash
-sudo cp -r * /var/www/html/GDG_Benha_Bootcamp_web_challenge/
-```
+#!/bin/bash
 
-### 3️⃣ Database Setup
+USER_NAME=$(whoami)
 
-#### ✅ Start MySQL:
+cd "/home/$USER_NAME/Desktop" || exit
+mkdir -p Day3
+cd Day3 || exit
 
-```bash
-sudo systemctl start mysql
-```
+git clone https://github.com/0xmaro/GDG_Benha_Bootcamp_web_challenge || { echo "Failed to clone repository"; exit 1; }
 
-#### ✅ Login to MySQL and create the database:
+sudo service mysql start || { echo "Failed to start MySQL service"; exit 1; }
 
-```bash
-mysql -u root -p
-```
-
-Then execute the following commands in MySQL:
-
-```sql
+sudo mysql -u root -p <<MYSQL_SCRIPT
 CREATE DATABASE ctf_challenge;
 CREATE USER 'maro'@'localhost' IDENTIFIED BY 'gdgchallenges';
 GRANT ALL PRIVILEGES ON ctf_challenge.* TO 'maro'@'localhost';
 FLUSH PRIVILEGES;
 EXIT;
-```
+MYSQL_SCRIPT
 
-#### ✅ Import database from `ctf_challenge.sql`
+sudo mysql -u root -p ctf_challenge < "/home/$USER_NAME/Desktop/Day3/GDG_Benha_Bootcamp_web_challenge/ctf_challenge.sql" || { echo "Failed to import SQL file"; exit 1; }
 
-```bash
-mysql -u maro -p GDG_Benha_Bootcamp_web_challenge < ctf_challenge.sql
-```
+sudo cp -r "/home/$USER_NAME/Desktop/Day3/GDG_Benha_Bootcamp_web_challenge" /var/www/html/GDG_Benha_Bootcamp_web_challenge || { echo "Failed to copy challenges directory"; exit 1; }
 
-### 4️⃣ Start the Server
+sudo chown -R www-data:www-data /var/www/html/GDG_Benha_Bootcamp_web_challenge || { echo "Failed to change ownership"; exit 1; }
 
-```bash
-sudo systemctl restart apache2
-```
+sudo service apache2 start || { echo "Failed to start Apache service"; exit 1; }
 
-Then open your browser and navigate to:
+xdg-open http://127.0.0.1/GDG_Benha_Bootcamp_web_challenge || { echo "Failed to open challenges in the browser"; exit 1; }
 
-```
-http://localhost/GDG_Benha_Bootcamp_web_challenge/
-```
-
-## 🔗 GitHub Repository
-[GDG Benha Bootcamp Web Challenges](https://github.com/0xmaro/GDG_Benha_Bootcamp_web_challenge.git)
-
-## 🚀 Enjoy Solving the Challenges! 🎯
-
+echo "Setup completed successfully."
